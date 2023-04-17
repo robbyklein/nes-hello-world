@@ -1,0 +1,23 @@
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "npm-watch build",
+    "build": "ca65 src/game.asm -o dist/game.o --debug-info && ld65 dist/game.o -t nes -o dist/game.nes --dbgfile dist/game.dbg",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "npm-watch": "^0.11.0"
+  },
+  "watch": {
+    "build": {
+      "patterns": ["src", "src/*"],
+      "extensions": "asm"
+    }
+  }
+}
