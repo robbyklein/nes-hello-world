@@ -39,7 +39,31 @@
         
         ; Reset scroll position
         JSR ResetScroll
-     
+
+        ; Render sprites
+            LDX #$00
+        LoadSprites:
+            ; Y cord
+            LDA SpriteData, X
+            STA $0200, X
+            INX
+            ; Tile
+            LDA SpriteData, X
+            STA $0200, X
+            INX
+            ; Attr
+            LDA SpriteData, X
+            STA $0200, X
+            INX
+            ; X cord
+            LDA SpriteData, X    
+            CLC
+            ADC frames_passed
+            STA $0200, X
+            INX
+            CPX #$20
+            BNE LoadSprites
+
         ; Infinite game loop
         JMP Update
 
@@ -73,21 +97,18 @@
         .byte $31, $06, $16, $26
         .byte $31, $09, $19, $29
         ; Sprites
-        .byte $31, $11, $21, $31
-        .byte $31, $37, $17, $0f
+        .byte $31, $36, $15, $0f
+        .byte $31, $12, $22, $32
         .byte $31, $13, $23, $33
         .byte $31, $14, $24, $34
 
-
     SpriteData:
-        .byte $08, $00, $00, $08
-        .byte $08, $01, $00, $10
-        .byte $10, $02, $00, $08
-        .byte $10, $03, $00, $10
-        .byte $18, $04, $00, $08
-        .byte $18, $05, $00, $10
-        .byte $20, $06, $00, $08
-        .byte $20, $07, $00, $10
-
+        .byte $D9, $30, $00, $00 ; y, tile, attr, x
+        .byte $D9, $31, $00, $08
+        .byte $E1, $40, $00, $00
+        .byte $E1, $41, $00, $08
+        .byte $E9, $50, $00, $00
+        .byte $E9, $51, $00, $08
+        
 .include "base/vectors.inc"
 .include "base/chars.inc"
