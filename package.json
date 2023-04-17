@@ -16,7 +16,7 @@
   },
   "watch": {
     "build": {
-      "patterns": ["src", "src/*"],
+      "patterns": ["src", "src/**.*"],
       "extensions": "asm"
     }
   }

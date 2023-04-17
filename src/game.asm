@@ -66,6 +66,19 @@
     HelloWorldData:
         .byte $07, $04, $0b, $0b, $0e, $00, $16, $0e, $11, $0b, $03
 
+    PalettesData:
+        ; Backgrounds
+        .byte $31, $00, $0c, $30
+        .byte $31, $01, $21, $31
+        .byte $31, $06, $16, $26
+        .byte $31, $09, $19, $29
+        ; Sprites
+        .byte $31, $11, $21, $31
+        .byte $31, $37, $17, $0f
+        .byte $31, $13, $23, $33
+        .byte $31, $14, $24, $34
+
+
     SpriteData:
         .byte $08, $00, $00, $08
         .byte $08, $01, $00, $10

@@ -58,45 +58,14 @@ ClearMemory:
     LDA #$00
     STA PPU_ADDR
 
-    ; Load color pallets (code from nexxt)
-	ldx #$19
-	stx PPU_DATA
-	lda #$00
-	sta PPU_DATA
-	lda #$10
-	sta PPU_DATA
-	lda #$30
-	sta PPU_DATA
-	stx PPU_DATA
-	lda #$01
-	sta PPU_DATA
-	lda #$21
-	sta PPU_DATA
-	lda #$31
-	sta PPU_DATA
-	stx PPU_DATA
-	lda #$06
-	sta PPU_DATA
-	lda #$16
-	sta PPU_DATA
-	lda #$26
-	sta PPU_DATA
-	stx PPU_DATA
-	lda #$09
-	sta PPU_DATA
-	lda #$19
-	sta PPU_DATA
-	lda #$29
-	sta PPU_DATA
-
-    ; Loop sprite data to render
-;     LDX #$00
-; LoadSprites:
-;     LDA SpriteData, X
-;     STA $0200, X
-;     INX
-;     CPX #$20
-;     BNE LoadSprites
+    ; Load palletes
+    LDX #$00
+LoadPallets:
+    LDA PalettesData, X
+    STA PPU_DATA
+    INX 
+    CPX #$20 ; 4x4 = 16
+    BNE LoadPallets
 
 ; Clear nametable
     LDX #$00
